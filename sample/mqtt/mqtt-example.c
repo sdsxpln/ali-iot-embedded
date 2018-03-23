@@ -38,9 +38,9 @@
     #define DEVICE_NAME             "00AAAAAABBBBBB4B645F5800"
     #define DEVICE_SECRET           "v9mqGzepKEphLhXmAoiaUIR2HZ7XwTky"
 #else
-    #define PRODUCT_KEY             "yfTuLfBJTiL"
-    #define DEVICE_NAME             "TestDeviceForDemo"
-    #define DEVICE_SECRET           "fSCl9Ns5YPnYN8Ocg0VEel1kXFnRlV6c"
+    #define PRODUCT_KEY             "1h3QKATXH8r"
+    #define DEVICE_NAME             "pandarobottest001"
+    #define DEVICE_SECRET           "UWsMhGxbYPAPEmYv5sz7EkDSEZ0pkrWR"
 #endif
 
 /* These are pre-defined topics */
@@ -210,7 +210,7 @@ int mqtt_client(void)
     }
 
     /* Subscribe the specific topic */
-    rc = IOT_MQTT_Subscribe(pclient, TOPIC_DATA, IOTX_MQTT_QOS1, _demo_message_arrive, NULL);
+    rc = IOT_MQTT_Subscribe(pclient, TOPIC_UPDATE, IOTX_MQTT_QOS1, _demo_message_arrive, NULL);
     if (rc < 0) {
         IOT_MQTT_Destroy(&pclient);
         EXAMPLE_TRACE("IOT_MQTT_Subscribe() failed, rc = %d", rc);
@@ -230,7 +230,7 @@ int mqtt_client(void)
     topic_msg.payload = (void *)msg_pub;
     topic_msg.payload_len = strlen(msg_pub);
 
-    rc = IOT_MQTT_Publish(pclient, TOPIC_DATA, &topic_msg);
+    rc = IOT_MQTT_Publish(pclient, TOPIC_UPDATE, &topic_msg);
     EXAMPLE_TRACE("rc = IOT_MQTT_Publish() = %d", rc);
 
     do {
@@ -246,7 +246,7 @@ int mqtt_client(void)
         topic_msg.payload = (void *)msg_pub;
         topic_msg.payload_len = msg_len;
 
-        rc = IOT_MQTT_Publish(pclient, TOPIC_DATA, &topic_msg);
+        rc = IOT_MQTT_Publish(pclient, TOPIC_UPDATE, &topic_msg);
         if (rc < 0) {
             EXAMPLE_TRACE("error occur when publish");
             rc = -1;
@@ -272,11 +272,11 @@ int mqtt_client(void)
 
     } while (cnt < 1);
 
-    IOT_MQTT_Unsubscribe(pclient, TOPIC_DATA);
+ //   IOT_MQTT_Unsubscribe(pclient, TOPIC_UPDATE);
 
     HAL_SleepMs(200);
 
-    IOT_MQTT_Destroy(&pclient);
+  //  IOT_MQTT_Destroy(&pclient);
 
 do_exit:
     if (NULL != msg_buf) {

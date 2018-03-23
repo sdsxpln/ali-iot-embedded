@@ -24,17 +24,17 @@
 #include "iot_import.h"
 #include "iot_export.h"
 
-#define PRODUCT_KEY         "lLeATwv18gi"
-#define DEVICE_NAME         "test1"
-#define DEVICE_SECRET       "HQ4AB77MRpAxzgRQAnJdjewGaiEBoJZR"
+#define PRODUCT_KEY         "1h3QKATXH8r"
+#define DEVICE_NAME         "pandarobottest001"
+#define DEVICE_SECRET       "UWsMhGxbYPAPEmYv5sz7EkDSEZ0pkrWR"
 
 /* These are the pre-defined topics */
 #define TOPIC_RRPC_REQ       "/sys/"PRODUCT_KEY"/"DEVICE_NAME"/rrpc/request/"
 #define TOPIC_RRPC_RSP       "/sys/"PRODUCT_KEY"/"DEVICE_NAME"/rrpc/response/"
 
-#define TEST_TOPIC            "/sys/lLeATwv18gi/test1/rrpc/request/890192612580343808"
+#define TEST_TOPIC            "/sys/1h3QKATXH8r/pandarobottest001/rrpc/request/890192612580343808"
 #define TEST_PAYLOAD          "hello world"
-#define TEST_TOPIC_PAYLOAD    "/sys/lLeATwv18gi/test1/rrpc/request/890192612580343808hello world"
+#define TEST_TOPIC_PAYLOAD    "/sys/1h3QKATXH8r/pandarobottest001/rrpc/request/890192612580343808hello world"
 
 
 #define RRPC_MQTT_MSGLEN    (1024)

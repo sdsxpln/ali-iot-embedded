@@ -1,0 +1,7 @@
+CONFIG_ENV_CFLAGS = -Wall -lrt
+OVERRIDE_CC = arm-none-linux-gnueabi-gcc
+OVERRIDE_AR = arm-none-linux-gnueabi-ar
+
+#CONFIG_src/platform =
+#CONFIG_sample =
+CONFIG_src/sdk-tests =
