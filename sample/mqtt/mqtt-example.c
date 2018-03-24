@@ -150,30 +150,6 @@ static void _demo_message_arrive(void *pcontext, void *pclient, iotx_mqtt_event_
     EXAMPLE_TRACE("----");
 }
 
-void mqtt_init(void)
-{
-    /* Initialize MQTT parameter */
-    memset(&mqtt_params, 0x0, sizeof(mqtt_params));
-
-    mqtt_params.port = pconn_info->port;
-    mqtt_params.host = pconn_info->host_name;
-    mqtt_params.client_id = pconn_info->client_id;
-    mqtt_params.username = pconn_info->username;
-    mqtt_params.password = pconn_info->password;
-    mqtt_params.pub_key = pconn_info->pub_key;
-
-    mqtt_params.request_timeout_ms = 2000;
-    mqtt_params.clean_session = 0;
-    mqtt_params.keepalive_interval_ms = 60000;
-    mqtt_params.pread_buf = msg_readbuf;
-    mqtt_params.read_buf_size = MQTT_MSGLEN;
-    mqtt_params.pwrite_buf = msg_buf;
-    mqtt_params.write_buf_size = MQTT_MSGLEN;
-
-    mqtt_params.handle_event.h_fp = event_handle;
-    mqtt_params.handle_event.pcontext = NULL;
-}
-
 int mqtt_client(void)
 {
     int rc = 0, msg_len, cnt = 0;
@@ -203,7 +179,27 @@ int mqtt_client(void)
         goto do_exit;
     }
 
-    mqtt_init();
+    /* Initialize MQTT parameter */
+    memset(&mqtt_params, 0x0, sizeof(mqtt_params));
+
+    mqtt_params.port = pconn_info->port;
+    mqtt_params.host = pconn_info->host_name;
+    mqtt_params.client_id = pconn_info->client_id;
+    mqtt_params.username = pconn_info->username;
+    mqtt_params.password = pconn_info->password;
+    mqtt_params.pub_key = pconn_info->pub_key;
+
+    mqtt_params.request_timeout_ms = 2000;
+    mqtt_params.clean_session = 0;
+    mqtt_params.keepalive_interval_ms = 60000;
+    mqtt_params.pread_buf = msg_readbuf;
+    mqtt_params.read_buf_size = MQTT_MSGLEN;
+    mqtt_params.pwrite_buf = msg_buf;
+    mqtt_params.write_buf_size = MQTT_MSGLEN;
+
+    mqtt_params.handle_event.h_fp = event_handle;
+    mqtt_params.handle_event.pcontext = NULL;
+
 
     /* Construct a MQTT client with specify parameter */
     pclient = IOT_MQTT_Construct(&mqtt_params);
